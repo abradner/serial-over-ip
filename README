@@ -1,0 +1,28 @@
+SerialOverIP Version 1.0
+8 Mar 2002, Stefan-Florin Nicola <sten@fx.ro>
+
+Tool for transport of serial interfaces over UDP/IP.
+Usefull for accessing a distant serial device by a local Windoze program.
+
+Example
+=======
+
+--------   Serial    --------                -------   Serial   ---------
+|Serial|   Cross     |Remote|   (Internet)   |Local|   Cross    |Windoze|
+|Device|-------------|Linux |---..........---|Linux|------------|program|
+--------   Cable     --------                -------   Cable    ---------
+
+
+One linux will be server and one will be client.
+On the server you can start the program typing the following command:
+
+bash# serialoverip -d /dev/ttyS0 9600-8n1 -s 127.0.0.1 3000
+
+... and on the client:
+
+bash# serialoverip -c 127.0.0.1 3000 -d /dev/ttyS1 9600-8n1
+
+In both commands the IP address is the server IP.
+Note that you have to start the server first, and it will be efectively be running
+only after the first packet received from the client.
+
